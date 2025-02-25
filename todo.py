@@ -17,8 +17,11 @@ while run:
         task = input("Введите название задачи: ")
         tasks.append(task)
         print("Задача добавлена!")
+    elif command == "exit":
+        print("Спасибо за использование! До свидания!")
+        break
     else:
         print("Неизвестная команда")
+        print("До свидания!")
         break
 
-print("До свидания!")
