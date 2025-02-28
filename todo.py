@@ -14,7 +14,12 @@ while run:
     if command == "help":
         print(HELP)
     elif command == "show":
-        print(tasks)
+        date = input("Введите дату для отображения списка задач: ")
+        if date in tasks:
+            for task in tasks[date]:
+                print('- ', task)
+        else:
+            print("Такой даты нет")
     elif command == "add":
         date = input("Введите дату для добавления задачи: ")
         task = input("Введите название задачи: ")
@@ -23,8 +28,9 @@ while run:
         else:
             tasks[date] = []
             tasks[date].append(task)
-            print(f'Задача {task} добавлена на дату {date}!')
-    elif command == "exit": 
+        print(f'Задача {task} добавлена на дату {date}!')
+
+    elif command == "exit":
         print("Спасибо за использование! До свидания!")
         break
     else:
