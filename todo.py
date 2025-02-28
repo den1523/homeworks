@@ -1,13 +1,23 @@
 HELP = """
 help - напечатать справку по программе.
 add - добавить задачу в список (название задачи запрашиваем у пользователя).
-show - напечатать все добавленные задачи."""
+show - напечатать все добавленные задачи.
+random - добавить случайную задачу на дату Сегодня"""
 
+RANDOM_TASK = "Записаться на курс Нетологии"
 tasks = {
 
 }
 
 run = True
+
+def add_todo(date, task):
+    if date in tasks:
+        tasks[date].append(task)
+    else:
+        tasks[date] = []
+        tasks[date].append(task)
+    print(f'Задача {task} добавлена на дату {date}!')
 
 while run:
     command = input("Введите команду: ")
@@ -23,13 +33,9 @@ while run:
     elif command == "add":
         date = input("Введите дату для добавления задачи: ")
         task = input("Введите название задачи: ")
-        if date in tasks:
-            tasks[date].append(task)
-        else:
-            tasks[date] = []
-            tasks[date].append(task)
-        print(f'Задача {task} добавлена на дату {date}!')
-
+        add_todo(date, task)
+    elif command == "random":
+        add_todo("Сегодня", RANDOM_TASK)
     elif command == "exit":
         print("Спасибо за использование! До свидания!")
         break
