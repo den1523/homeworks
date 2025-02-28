@@ -1,10 +1,13 @@
+import random
+
 HELP = """
 help - напечатать справку по программе.
 add - добавить задачу в список (название задачи запрашиваем у пользователя).
 show - напечатать все добавленные задачи.
 random - добавить случайную задачу на дату Сегодня"""
 
-RANDOM_TASK = "Записаться на курс Нетологии"
+RANDOM_TASKS = ["Записаться на курс в Нетологию", "Написать Гвидо письмо", "Покормить кошку", "Помыть машину"]
+
 tasks = {
 
 }
@@ -13,8 +16,12 @@ run = True
 
 def add_todo(date, task):
     if date in tasks:
+        # Дата есть в словаре
+        # Добавляем в список задачу
         tasks[date].append(task)
     else:
+        # Даты в словаре нет
+        # Создаем запись с ключом date
         tasks[date] = []
         tasks[date].append(task)
     print(f'Задача {task} добавлена на дату {date}!')
@@ -35,7 +42,8 @@ while run:
         task = input("Введите название задачи: ")
         add_todo(date, task)
     elif command == "random":
-        add_todo("Сегодня", RANDOM_TASK)
+        task = random.choice(RANDOM_TASKS)
+        add_todo("Сегодня", task)
     elif command == "exit":
         print("Спасибо за использование! До свидания!")
         break
